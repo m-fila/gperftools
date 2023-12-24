@@ -116,6 +116,12 @@ option(gperftools_enable_stacktrace_via_backtrace
 option(gperftools_enable_libunwind
        "Enable libunwind linking"
        ${default_enable_libunwind})
+option(gperftools_enable_gcc_unwinder_by_default
+       "Prefer libgcc's _Unwind_Backtrace as default stacktrace capturing method"
+       OFF)
+if(gperftools_enable_gcc_unwinder_by_default)
+  set(PREFER_LIBGCC_UNWINDER 1)
+endif()
 
 set(enable_backtrace ${gperftools_enable_stacktrace_via_backtrace})
 set(enable_libunwind ${gperftools_enable_libunwind})
